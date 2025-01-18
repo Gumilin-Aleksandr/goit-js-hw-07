@@ -1,29 +1,13 @@
 `use strict`;
 
-class StringBuilder {
-  #value;
-  constructor(initialValue) {
-    this.#value = initialValue;
-  }
-  getValue() {
-    return this.#value;
-  }
-  padEnd(str) {
-    this.#value += str;
-  }
-  padStart(str) {
-    this.#value = str + this.#value;
-  }
-  padBoth(str) {
-    this.#value = str + this.#value + str;
-  }
-}
+const inputText = document.querySelector('#name-input');
+const outputText = document.querySelector('#name-output');
 
-const builder = new StringBuilder('.');
-console.log(builder.getValue()); // "."
-builder.padStart('^');
-console.log(builder.getValue()); // "^."
-builder.padEnd('^');
-console.log(builder.getValue()); // "^.^"
-builder.padBoth('=');
-console.log(builder.getValue()); // "=^.^="
+inputText.addEventListener('input', onInputType);
+
+function onInputType() {
+  const trimmedValue = inputText.value.trim();
+  outputText.textContent = trimmedValue || 'Anonymous';
+
+  return outputText;
+}
